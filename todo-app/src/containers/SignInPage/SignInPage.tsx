@@ -5,7 +5,7 @@ class SignInPage extends React.Component {
     render() {
         return (
             <div>
-                SignIn Page
+                Sign In Page
             </div>
         );
     }
