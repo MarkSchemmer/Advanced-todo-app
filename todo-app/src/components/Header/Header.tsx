@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 import "./css-scss/Header.css";
 import { connect } from "react-redux";
 
+import { navigate } from "../../redux/actions/actions";
+
 const main = "/main";
 const board = "/boards";
 
@@ -14,16 +16,19 @@ const board = "/boards";
 
 */
 
+interface Props {
+    current : string 
+}
 
-class Header extends React.Component {
 
-
-    private pathName : string;
+class Header extends React.PureComponent<Props> {
 
     constructor(props:any) {
         super(props);
-        this.pathName = window.location.pathname;
 
+        if(props.current !== window.location.pathname){
+            navigate(window.location.pathname); 
+        }
     }
 
 
@@ -33,37 +38,34 @@ class Header extends React.Component {
     isCurrent = (is:boolean) => is ? this.makingCurrent() : "";
 
     handleHeaderClick = (where:string) => {
-        this.pathName = where;
-        console.log(this.pathName);
+        navigate(where);
     }
 
-    componentWillMount() {
-        this.pathName = window.location.pathname;
-    }
 
     render() {
-        console.log(this.pathName);
+        
+        const pathName = this.props.current;
         
         return (
             <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <a className="navbar-brand" href="/">Fixed navbar</a>
+                <Link className="navbar-brand" to="/">Fixed navbar</Link>
                 <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="navbar-collapse collapse" id="navbarCollapse">
                 <ul className="navbar-nav mr-auto">
-                    <li className={"nav-item" + (this.pathName===main) ? "active" : ""}>
+                    <li className={"nav-item" + ((pathName===main) ? " active" : "")}>
                     <Link
                     onClick={() => this.handleHeaderClick(main) } 
                     className="nav-link" 
-                    to={main}>Home { this.isCurrent(this.pathName===main) } </Link>
+                    to={main}>Home { this.isCurrent(pathName===main) } </Link>
                     </li>
-                    <li className={"nav-item" + (this.pathName===board) ? "active" : ""}>
+                    <li className={"nav-item" + ((pathName===board) ? " active" : "")}>
                     <Link
                     onClick={() => this.handleHeaderClick(board) } 
                     className="nav-link" 
-                    to={board}>Board { this.isCurrent(this.pathName===board) } </Link>
+                    to={board}>Board { this.isCurrent(pathName===board) } </Link>
                     </li>
                     <li className="nav-item">
                     <a className="nav-link disabled" href="#" tabIndex={-1} aria-disabled={"true"}>Disabled</a>

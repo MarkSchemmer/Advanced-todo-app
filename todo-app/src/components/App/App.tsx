@@ -9,7 +9,6 @@ class App extends React.Component {
             <React.Fragment>
                 <Header />
                     <Connector /> 
-                <Footer /> 
             </React.Fragment>
         );
     }

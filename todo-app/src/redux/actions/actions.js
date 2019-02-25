@@ -1,7 +1,6 @@
 import store from "../store/store";
-impo
-export const navigate = (dispatch) => {
-    return () => {
+import { createTodo, naviageCreatetor } from "../actions-creators/action-creators";
 
-    }
+export const navigate = (data) => {
+    store.dispatch(naviageCreatetor(data));
 }
