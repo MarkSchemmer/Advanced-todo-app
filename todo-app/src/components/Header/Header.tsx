@@ -10,17 +10,9 @@ const board = "/boards";
 const logo = "/";
 
 
-/*
-
-    I'm thinking I need to wire up redux and then track the default and then when there is a click. or what route I'm on... 
-    send a dispatch to update the and highlight the current viewed page
-
-*/
-
 interface Props {
     current : string 
 }
-
 
 class Header extends React.PureComponent<Props> {
 
