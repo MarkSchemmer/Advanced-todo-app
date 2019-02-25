@@ -7,6 +7,7 @@ import { navigate } from "../../redux/actions/actions";
 
 const main = "/main";
 const board = "/boards";
+const logo = "/";
 
 
 /*
@@ -49,7 +50,10 @@ class Header extends React.PureComponent<Props> {
         return (
             <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <Link className="navbar-brand" to="/">Fixed navbar</Link>
+                <Link 
+                onClick={() => this.handleHeaderClick(logo)}
+                className="navbar-brand" 
+                to="/">Fixed navbar</Link>
                 <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
