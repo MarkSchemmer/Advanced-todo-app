@@ -4,14 +4,18 @@
 
 */
 
+import types from "../constants/constants";
 
 const initState = {
-
+    todos : []
 }
 
-export const todosReducer = (state = initState, { type, payLoad })  => {
-    switch(type){
+export default (state = initState, action)  => {
+    switch(action.type){
+        case types.CREATE_TODO : {
+            return Object.assign({}, state, { todos : [...state.todos, action.payload]});
+        }
         default :
-            return state 
+            return state;
     }
 }

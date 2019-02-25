@@ -1,6 +1,7 @@
-import { combineReducers } from "react-redux";
-import { todosReducer } from "./todos";
-
-export default combineReducers(
-    todosReducer
-);
+import { combineReducers } from "redux";
+import  todosReducer  from "./todos";
+import  headerReducer  from "./highlightedHeaderReducer";
+export default combineReducers({
+    todosReducer,
+    headerReducer
+});
