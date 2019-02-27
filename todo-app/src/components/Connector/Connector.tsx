@@ -8,6 +8,7 @@ import SignInPage from "../../containers/SignInPage/SignInPage";
 import PageNotFound from "../PageNotFound/PageNotFound";
 
 import "./css-scss/Connector.css";
+import "@fortawesome/fontawesome-free/css/fontawesome.css";
 
 class Connector extends React.Component {
     render () {

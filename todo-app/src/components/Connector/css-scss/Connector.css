@@ -1,5 +1,5 @@
 .App-header {
-  background-color: #282c34;
+  background-color: #eff1f3;
   min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,6 +15,6 @@
       -ms-flex-pack: center;
           justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: darkgrey;
 }
 /*# sourceMappingURL=Connector.css.map */
