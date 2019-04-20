@@ -1,0 +1,10 @@
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\bin\Debug\netcoreapp2.1\Advanced-todo-app.deps.json
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\bin\Debug\netcoreapp2.1\Advanced-todo-app.runtimeconfig.json
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\bin\Debug\netcoreapp2.1\Advanced-todo-app.runtimeconfig.dev.json
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\bin\Debug\netcoreapp2.1\Advanced-todo-app.dll
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\bin\Debug\netcoreapp2.1\Advanced-todo-app.pdb
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\obj\Debug\netcoreapp2.1\Advanced-todo-app.fsprojAssemblyReference.cache
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\obj\Debug\netcoreapp2.1\Advanced-todo-app.AssemblyInfoInputs.cache
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\obj\Debug\netcoreapp2.1\Advanced-todo-app.AssemblyInfo.fs
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\obj\Debug\netcoreapp2.1\Advanced-todo-app.dll
+D:\My_Files\courses\GitRepos\Advanced-todo-app\API\obj\Debug\netcoreapp2.1\Advanced-todo-app.pdb
