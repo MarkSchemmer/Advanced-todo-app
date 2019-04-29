@@ -1,7 +1,7 @@
-
-enum Constants {
-    CREATE_TODO,
-    NAVIGATE_TO_DIFFERENT_PAGE
+const  Actions = {
+    CREATE_TODO:'CREATE_TODO',
+    NAVIGATE_TO_DIFFERENT_PAGE:'NAVIGATE_TO_DIFFERENT_PAGE',
+    TODO_INPUT_CHANGE:'TODO_INPUT_CHANGE'
 }
 
-export default Constants;
+export default Actions

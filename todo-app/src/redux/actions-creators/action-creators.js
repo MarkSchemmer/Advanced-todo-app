@@ -1,16 +1,22 @@
 import Constants from "../constants/constants";
-import store from "../store/store";
 
-export const createTodo = (data) => {
+export const createTodo = data => {
     return {
         type : Constants.CREATE_TODO,
-        payLoad : data
+        payload : data
     };
 } 
 
-export const naviageCreatetor = (data) => {
+export const naviageCreatetor = data => {
     return {
         type : Constants.NAVIGATE_TO_DIFFERENT_PAGE,
-        payLoad : data
+        payload : data
     };
+}
+
+export const newInput = data => {
+    return {
+        type: Constants.TODO_INPUT_CHANGE,
+        payload: data
+    }
 }

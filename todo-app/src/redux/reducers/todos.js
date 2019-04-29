@@ -11,9 +11,9 @@ const initState = {
 
 export default (state = initState, action)  => {
     switch(action.type){
-        case types.CREATE_TODO : {
-            return Object.assign({}, state, { todos : [...state.todos, action.payload]});
-        }
+        // case types.CREATE_TODO : {
+        //     return Object.assign({}, state, { todos : [...state.todos, action.payload]});
+        // }
         default :
             return state;
     }
