@@ -22,6 +22,12 @@ export const TodoInputReducer = (state=initState, action) => {
                 todos:[...state.todos, action.payload]
             }
         }
+        case Actions.CLEAR_TODO_INPUT: {
+            return {
+                ...state, 
+                todoValue: ''
+            }
+        }
         default: {
             return state
         }

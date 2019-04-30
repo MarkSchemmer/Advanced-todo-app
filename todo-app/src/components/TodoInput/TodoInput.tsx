@@ -1,16 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getStylesForInput } from '../../containers/MainPage/MainPageInlineStyles'
-import { newInput, createTodo } from '../../redux/actions-creators/action-creators'
-class TodoInputRaw extends React.PureComponent<any> {
+import { newInput, createTodo, clearInputTodo } from '../../redux/actions-creators/action-creators'
+class TodoInputRaw extends React.Component<any> {
 
     constructor(props: any) {
         super(props)
     }
 
     handleEnter = e => {
-        if(e.key==='Enter')
+        if(e.key==='Enter') {
             this.props.createTodo(this.props.todoInputValue) 
+            this.props.clearInputTodo()
+        }
+           
+    }
+
+    newInputWrapper = e => {
+        if(e.length < 20)
+            this.props.newInput(e)
     }
 
     render() {
@@ -18,7 +26,7 @@ class TodoInputRaw extends React.PureComponent<any> {
         return (
             <input 
             value={this.props.todoInputValue}
-            onChange={e => this.props.newInput(e.target.value)}
+            onChange={e => this.newInputWrapper(e.target.value)}
             onKeyDown={this.handleEnter}
             className={input}
             type='text'
@@ -36,7 +44,8 @@ const mapStateToProps = (state:any) => {
 
 const mapDispatchToProps = {
     newInput,
-    createTodo
+    createTodo,
+    clearInputTodo
 };
 
 export const TodoInput = connect(

@@ -22,3 +22,11 @@ export const getStylesForInput = () => {
         }
     });
 }
+
+export const getStylesForTodoBox = () => {
+    return mergeStyleSets({
+        div: {
+            backgroundColor:'pink'
+        }
+    })
+}
