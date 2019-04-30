@@ -8,8 +8,12 @@ class TodoInputRaw extends React.Component<any> {
         super(props)
     }
 
+    shouldComponentUpdate(nextProps) {
+        return nextProps.todoInputValue !== this.props.todoInputValue
+    }
+
     handleEnter = e => {
-        if(e.key==='Enter') {
+        if(e.key==='Enter'&&e.target.value.length>1) {
             this.props.createTodo(this.props.todoInputValue) 
             this.props.clearInputTodo()
         }
@@ -46,9 +50,9 @@ const mapDispatchToProps = {
     newInput,
     createTodo,
     clearInputTodo
-};
+}
 
 export const TodoInput = connect(
 mapStateToProps,
 mapDispatchToProps
-)(TodoInputRaw);
+)(TodoInputRaw)

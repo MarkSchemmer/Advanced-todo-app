@@ -10,8 +10,7 @@ class TodosRaw extends React.Component<any> {
     }
 
     shouldComponentUpdate(nextProps) {
-        console.log(nextProps)
-        return JSON.stringify(nextProps.todos) !== JSON.stringify(this.props.todos)
+        return (JSON.stringify(nextProps.todos) !== JSON.stringify(this.props.todos))
     }
 
     todos = () => {

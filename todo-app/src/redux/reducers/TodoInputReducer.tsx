@@ -36,7 +36,7 @@ export const TodoInputReducer = (state=initState, action) => {
 
 // Later let's refactor on how to implement a functional reducer...
 
-// const switchcase = cases => defaultCase => key =>
+// const   = cases => defaultCase => key =>
 //     cases.hasOwnProperty(key) ? cases[key] : defaultCase
 
 

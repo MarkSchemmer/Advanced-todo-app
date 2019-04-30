@@ -80,8 +80,7 @@ class Header extends React.PureComponent<Props> {
 
 
 export default connect((state:any, props:any) => {
-    console.log(state);
     return {
         current : state.headerReducer
     }
-})(Header);
+}, null)(Header)
