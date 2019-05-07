@@ -46,6 +46,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.7.2"
+    "@fortawesome/fontawesome-free": "^5.7.2",
+    "react-perftool-extension": "^1.0.6"
   }
 }

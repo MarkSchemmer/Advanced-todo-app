@@ -6,10 +6,10 @@ import Footer from "../Footer/Footer";
 class App extends React.Component {
     render() {
         return (
-            <React.Fragment>
+            <>
                 <Header />
-                    <Connector /> 
-            </React.Fragment>
+                <Connector />
+            </>
         );
     }
 }

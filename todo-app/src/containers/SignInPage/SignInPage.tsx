@@ -1,5 +1,4 @@
 import React from "react";
-import "./css-scss/SignInPage.css";
 
 class SignInPage extends React.Component {
     render() {

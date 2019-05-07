@@ -4,7 +4,7 @@ import Actions from '../constants/constants'
 
 const initState = {
     todoValue:'',
-    todos:[]
+    todos:['Todo1']
 }
 
 

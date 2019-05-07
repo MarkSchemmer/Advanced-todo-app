@@ -1,15 +1,36 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getStylesForInput } from '../../containers/MainPage/MainPageInlineStyles'
 import { newInput, createTodo, clearInputTodo } from '../../redux/actions-creators/action-creators'
+import { mergeStyleSets } from '@uifabric/merge-styles';
+
+/*
+    padding: 10px;
+    width: 400px;
+    font-size: 1.4em;
+    font-family: monospace;
+*/
+
+
+const inputStyles = () => {
+    return mergeStyleSets({
+       input : {
+        padding:'10px',
+        width:'400px',
+        fontSize:'1.4em'
+       }
+    })
+}
+
 class TodoInputRaw extends React.Component<any> {
 
+    private inputStyles: any;
     constructor(props: any) {
         super(props)
+        this.inputStyles = inputStyles();
     }
 
     shouldComponentUpdate(nextProps) {
-        return nextProps.todoInputValue !== this.props.todoInputValue
+       return nextProps.todoInputValue !== this.props.todoInputValue
     }
 
     handleEnter = e => {
@@ -26,15 +47,16 @@ class TodoInputRaw extends React.Component<any> {
     }
 
     render() {
-        const { input } = getStylesForInput()
         return (
-            <input 
-            value={this.props.todoInputValue}
-            onChange={e => this.newInputWrapper(e.target.value)}
-            onKeyDown={this.handleEnter}
-            className={input}
-            type='text'
-            placeholder='Please Enter Todo:' />
+            <div>
+                <input 
+                value={this.props.todoInputValue}
+                onChange={e => this.newInputWrapper(e.target.value)}
+                onKeyDown={this.handleEnter}
+                type='text'
+                className={this.inputStyles.input}
+                placeholder='Please Enter Todo:' />
+            </div>
         )
     }
 }

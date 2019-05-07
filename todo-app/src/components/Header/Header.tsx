@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
-import "./css-scss/Header.css";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { navigate } from "../../redux/actions/actions";
@@ -40,8 +39,7 @@ class Header extends React.PureComponent<Props> {
         const pathName = this.props.current;
         
         return (
-            <header>
-            <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                 <Link 
                 onClick={() => this.handleHeaderClick(logo)}
                 className="navbar-brand" 
@@ -73,7 +71,6 @@ class Header extends React.PureComponent<Props> {
                 </form>
                 </div>
             </nav>
-            </header>
         );
     }
 }

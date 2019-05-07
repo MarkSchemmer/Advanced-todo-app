@@ -2,11 +2,25 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Todo } from './Todo';
 import deepEqual from 'deep-equal'
+import { mergeStyleSets } from '@uifabric/merge-styles';
 
+const listOfTodos = () => {
+    return mergeStyleSets({
+        todos:{
+            selectors:{
+                ':nth-child(1)':{
+                  //  border: 'none'
+                }
+            }
+        }
+    })
+}
 
 class TodosRaw extends React.Component<any> {
+    private listOfTodos: any
     constructor(props) {
-        super(props);
+        super(props)
+        this.listOfTodos = listOfTodos()
     }
 
     shouldComponentUpdate(nextProps) {
@@ -15,11 +29,13 @@ class TodosRaw extends React.Component<any> {
 
     todos = () => {
         return (
-            this.props.todos.map( (item, key) => 
+        <div>
+            {this.props.todos.map( (item, key) => 
             <Todo
                  key={key}  
                  todo={item} /> 
-         ) 
+            )}
+         </div> 
         )
     }
 
