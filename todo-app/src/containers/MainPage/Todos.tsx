@@ -30,10 +30,10 @@ class TodosRaw extends React.Component<any> {
     todos = () => {
         return (
         <div>
-            {this.props.todos.map( (item, key) => 
+            {this.props.todos.map(item => 
             <Todo
-                 key={key}  
-                 todo={item} /> 
+                 key={item.id}
+                 todo={item.value} {...item} /> 
             )}
          </div> 
         )

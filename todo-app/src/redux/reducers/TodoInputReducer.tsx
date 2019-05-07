@@ -1,10 +1,11 @@
 import Actions from '../constants/constants'
-
+import { Todo } from '../../Entities/Todo'
+import todos from './todos';
 
 
 const initState = {
     todoValue:'',
-    todos:['Todo1']
+    todos:[]
 }
 
 
@@ -19,13 +20,20 @@ export const TodoInputReducer = (state=initState, action) => {
         case Actions.CREATE_TODO: {
             return {
                 ...state,
-                todos:[...state.todos, action.payload]
+                todos:[...state.todos, new Todo(action.payload)]
             }
         }
         case Actions.CLEAR_TODO_INPUT: {
             return {
                 ...state, 
                 todoValue: ''
+            }
+        }
+        case Actions.UPDATE_TODO: {
+            const { id, value } = action.payload
+            return {
+                ...state,
+                todos: state.todos.map(i => i.id === id ? {...i, value} : i)
             }
         }
         default: {

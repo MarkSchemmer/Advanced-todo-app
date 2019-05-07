@@ -26,3 +26,10 @@ export const newInput = data => {
         payload: data
     }
 }
+
+export const updateTodo = data => {
+    return {
+        type: Constants.UPDATE_TODO,
+        payload: data
+    }
+}
