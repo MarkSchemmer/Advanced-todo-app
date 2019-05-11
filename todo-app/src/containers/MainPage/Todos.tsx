@@ -16,25 +16,22 @@ const listOfTodos = () => {
     })
 }
 
-class TodosRaw extends React.Component<any> {
+class TodosRaw extends React.PureComponent<any> {
     private listOfTodos: any
     constructor(props) {
         super(props)
         this.listOfTodos = listOfTodos()
     }
 
-    shouldComponentUpdate(nextProps) {
-        return (JSON.stringify(nextProps.todos) !== JSON.stringify(this.props.todos))
-    }
-
     todos = () => {
+
         return (
         <div>
-            {this.props.todos.map(item => 
-            <Todo
-                 key={item.id}
-                 todo={item.value} {...item} /> 
-            )}
+            {Object.keys(this.props.todos || {} ).map( item => 
+                    <Todo 
+                        key={item}
+                       {...this.props.todos[item]} /> 
+                 ) }
          </div> 
         )
     }
@@ -51,7 +48,7 @@ class TodosRaw extends React.Component<any> {
 
 const mapStateToProps = (state: any) => {
     return {
-        todos: state.TodoInputReducer.todos
+        todos: state.TodosReducer.todos
     }
 }
 

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import  todosReducer  from './todos'
 import  headerReducer  from './highlightedHeaderReducer'
-import { TodoInputReducer } from '../reducers/TodoInputReducer'
+import { todoInputValueReducer } from '../reducers/TodoInputValueReducer'
+import { TodosReducer } from './TodosReducer'
 
 export default combineReducers({
-    todosReducer,
+    TodosReducer,
     headerReducer,
-    TodoInputReducer
+    todoInputValueReducer
 });

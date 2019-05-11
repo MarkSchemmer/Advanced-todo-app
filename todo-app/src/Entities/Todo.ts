@@ -1,9 +1,10 @@
+import { normalize, schema } from 'normalizr';
 
-
+let starter = 0
 interface ITodo {
   createdAt: Date
   value: string
-  id:string
+  id: string
 }
 
 const genId = () => {
@@ -20,13 +21,25 @@ const  e5 = () =>  {
     return e5();
 }
 
-export class Todo implements ITodo {
+ class Todo implements ITodo {
     createdAt: Date   
-    value: string 
-    id: string 
+    value: string
+    id: string  
     constructor(val) {
         this.value = val 
-        this.id = genId()
         this.createdAt = new Date()
+        this.id = genId()
     }
+}
+
+const todoSchema = new schema.Entity('Todo');
+
+const todoSchemaList = new schema.Array(todoSchema);
+
+
+
+
+export { 
+  todoSchemaList,
+  Todo
 }

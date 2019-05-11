@@ -3,14 +3,6 @@ import { connect } from 'react-redux'
 import { newInput, createTodo, clearInputTodo } from '../../redux/actions-creators/action-creators'
 import { mergeStyleSets } from '@uifabric/merge-styles';
 
-/*
-    padding: 10px;
-    width: 400px;
-    font-size: 1.4em;
-    font-family: monospace;
-*/
-
-
 const inputStyles = () => {
     return mergeStyleSets({
        input : {
@@ -21,7 +13,7 @@ const inputStyles = () => {
     })
 }
 
-class TodoInputRaw extends React.Component<any> {
+class TodoInputRaw extends React.PureComponent<any> {
 
     private inputStyles: any;
     constructor(props: any) {
@@ -29,12 +21,9 @@ class TodoInputRaw extends React.Component<any> {
         this.inputStyles = inputStyles();
     }
 
-    shouldComponentUpdate(nextProps) {
-       return nextProps.todoInputValue !== this.props.todoInputValue
-    }
-
     handleEnter = e => {
         if(e.key==='Enter'&&e.target.value.length>1) {
+            console.log('inside the enter');
             this.props.createTodo(this.props.todoInputValue) 
             this.props.clearInputTodo()
         }
@@ -42,6 +31,7 @@ class TodoInputRaw extends React.Component<any> {
     }
 
     newInputWrapper = e => {
+        e = e.target.value 
         if(e.length < 20)
             this.props.newInput(e)
     }
@@ -50,12 +40,11 @@ class TodoInputRaw extends React.Component<any> {
         return (
             <div>
                 <input 
-                value={this.props.todoInputValue}
-                onChange={e => this.newInputWrapper(e.target.value)}
-                onKeyDown={this.handleEnter}
-                type='text'
-                className={this.inputStyles.input}
-                placeholder='Please Enter Todo:' />
+                    value={ this.props.todoInputValue }
+                    onChange={ this.newInputWrapper }
+                    onKeyDown={ this.handleEnter }
+                    className={ this.inputStyles.input }
+                    placeholder='Please Enter Todo:' />
             </div>
         )
     }
@@ -63,7 +52,7 @@ class TodoInputRaw extends React.Component<any> {
 
 const mapStateToProps = (state:any) => {
     return {
-        todoInputValue: state.TodoInputReducer.todoValue
+        todoInputValue: state.todoInputValueReducer.todoInputValue
     }
 }
 
