@@ -23,11 +23,9 @@ class TodoInputRaw extends React.PureComponent<any> {
 
     handleEnter = e => {
         if(e.key==='Enter'&&e.target.value.length>1) {
-            console.log('inside the enter');
-            this.props.createTodo(this.props.todoInputValue) 
+             this.props.createTodo(this.props.todoInputValue) 
             this.props.clearInputTodo()
-        }
-           
+        }    
     }
 
     newInputWrapper = e => {

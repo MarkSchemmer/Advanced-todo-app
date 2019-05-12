@@ -2,42 +2,19 @@ import React from 'react'
 import { connect } from 'react-redux'
 import deepEqual from 'deep-equal'
 import { mergeStyleSets } from '@uifabric/merge-styles';
-import { updateTodo } from '../../redux/actions-creators/action-creators';
+import { updateTodo, deleteTodoById } from '../../redux/actions-creators/action-creators';
+import { todoStyles } from './Styles/MainPageStyles';
+import { TodoNotEditable } from './TodoNotEditable';
+import { TodoEditable } from './TodoEditable';
 
 interface IProps {
     value: string;
     updateTodo: any 
     id: string 
+    deleteTodoById: any  
 }
 
-const todoStyles = () => {
-    const borderStyle = '1px solid rgba(0, 0, 0, 0.5)'
-    const none = ' none '
-    const important = ' !important '
-    return mergeStyleSets({
-        todo: {
-           // flexDirection:'column',
-            border: borderStyle,
-            padding:'30px',
-            fontSize:'1.4em',
-            width: '100%',
-            marginTop: '-1px',
-            borderBottom: '0',
-            selectors: {
-                ':last-child':{
-                    borderBottom: borderStyle
-                },
-                ':focus':{
-                    outline: none + ' !important', 
-                    border: borderStyle
-                }
-            }
-        },
-        TodoContainer: {
-            display: 'flex'
-        }
-    })
-}
+
 
 class TodoRaw extends React.PureComponent<IProps, any> {
     private todoStyles: any
@@ -59,42 +36,40 @@ class TodoRaw extends React.PureComponent<IProps, any> {
         })
     }
 
-    updateTodo = e => {
-        const newTodo = e.target.value
-        const newTodoObj = {
-            value: newTodo,
-            id: this.props.id
-        }
-        if(newTodo.length < 20) {
-            this.props.updateTodo(newTodoObj)
-        }
-    }
+ 
 
-    changeEditable = () => this.setState( (prevState) => ({ 
+    changeEditable = () => this.setState( prevState => ({ 
         editable: !prevState.editable
-    }))
+    }), () => {
+        console.log(this.props.value)
+        debugger
+        if(!this.state.editable) {
+            
+                if(this.props.value.length===0) {
+                    debugger
+                    this.props.deleteTodoById(this.props.id)
+                }
+        }
+    })
 
     handleEnter = e => {
         e.key === 'Enter' ? this.changeEditable() : null 
     }
 
+    renderTodo = () => {
+       return (  !this.state.editable ?
+            <TodoNotEditable 
+            doubleClickTodo={ this.doubleClickTodo }
+            value={ this.props.value }  /> 
+         :  <TodoEditable handleEnter={ this.handleEnter } value={this.props.value} id={this.props.id} /> 
+  ) 
+    }
 
 
     InputOrDiv = () => {
         return (
         <div className={this.todoStyles.TodoContainer}>
-             { !this.state.editable ? <div
-                onDoubleClick={this.doubleClickTodo}
-                className={this.todoStyles.todo}>
-                {this.props.value}
-             </div> :  
-                    <input 
-                            autoFocus
-                            className={this.todoStyles.todo}
-                            value={this.props.value}
-                            onChange={this.updateTodo}
-                            onKeyDown={ this.handleEnter }
-                            type="text" />  }  
+            { this.renderTodo() }
         </div> )
     }
 
@@ -112,7 +87,8 @@ const mapStateToProps = (state: any, ownProps: any) => {
 export const Todo = connect(
 mapStateToProps,
 {
-    updateTodo
+    updateTodo,
+    deleteTodoById
 }
 )(TodoRaw)
 

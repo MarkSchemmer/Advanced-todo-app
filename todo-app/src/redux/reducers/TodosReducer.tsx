@@ -36,6 +36,14 @@ export const TodosReducer = (state=initState, action) => {
                 todos 
             }
         }
+        case Actions.DELETE_TODO_BY_ID: {
+            const todos = state.todos.without(state.todos, action.payload)
+                debugger
+            console.log(todos)
+            return {    
+                todos
+            }
+        }
         default: {
             return state
         }

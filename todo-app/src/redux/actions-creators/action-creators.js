@@ -1,25 +1,30 @@
-import Constants from "../constants/constants";
+import Actions from "../constants/constants";
 
 export const createTodo = data => ({
-        type : Constants.CREATE_TODO,
+        type : Actions.CREATE_TODO,
         payload : data
-    })
+})
 
 export const clearInputTodo = () => ({
-        type: Constants.CLEAR_TODO_INPUT
-    })
+        type: Actions.CLEAR_TODO_INPUT
+})
 
 export const naviageCreatetor = data => ({
-        type : Constants.NAVIGATE_TO_DIFFERENT_PAGE,
+        type : Actions.NAVIGATE_TO_DIFFERENT_PAGE,
         payload : data
-    })
+})
 
 export const newInput = data => ({
-        type: Constants.TODO_INPUT_CHANGE,
+        type: Actions.TODO_INPUT_CHANGE,
         payload: data
-    })
+})
 
 export const updateTodo = data => ({
-        type: Constants.UPDATE_TODO,
+        type: Actions.UPDATE_TODO,
         payload: data
-    })
+})
+
+export const deleteTodoById = id => ({
+        type: Actions.DELETE_TODO_BY_ID,
+        payload : id 
+})
