@@ -4,11 +4,19 @@ import { newInput, createTodo, clearInputTodo } from '../../redux/actions-creato
 import { mergeStyleSets } from '@uifabric/merge-styles';
 
 const inputStyles = () => {
+    const none = 'none'
     return mergeStyleSets({
        input : {
-        padding:'10px',
+        //padding:'10px',
         width:'400px',
-        fontSize:'1.4em'
+        fontSize:'1.4em',
+        border: none,
+        selectors : {
+            ':focus':{
+                border: none,
+                outline: none  
+            }
+        }
        }
     })
 }
@@ -30,20 +38,18 @@ class TodoInputRaw extends React.PureComponent<any> {
 
     newInputWrapper = e => {
         e = e.target.value 
-        if(e.length < 20)
+        if(e.length < 30)
             this.props.newInput(e)
     }
 
     render() {
         return (
-            <div>
-                <input 
-                    value={ this.props.todoInputValue }
-                    onChange={ this.newInputWrapper }
-                    onKeyDown={ this.handleEnter }
-                    className={ this.inputStyles.input }
-                    placeholder='Please Enter Todo:' />
-            </div>
+                    <input 
+                        value={ this.props.todoInputValue }
+                        onChange={ this.newInputWrapper }
+                        onKeyDown={ this.handleEnter }
+                        className={ this.inputStyles.input }
+                        placeholder='Please Enter Todo:' />
         )
     }
 }

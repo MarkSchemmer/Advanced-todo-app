@@ -5,6 +5,7 @@ interface ITodo {
   createdAt: Date
   value: string
   id: string
+  completed: boolean 
 }
 
 const genId = () => {
@@ -24,7 +25,8 @@ const  e5 = () =>  {
  class Todo implements ITodo {
     createdAt: Date   
     value: string
-    id: string  
+    id: string 
+    completed: boolean = false 
     constructor(val) {
         this.value = val 
         this.createdAt = new Date()

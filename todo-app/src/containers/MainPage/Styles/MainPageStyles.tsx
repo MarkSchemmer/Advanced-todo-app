@@ -4,22 +4,24 @@ const important = ' !important '
 
 export const todoStyles = () => {
     const borderStyle = '1px solid rgba(0, 0, 0, 0.5)'
+    const none = 'none'
     return mergeStyleSets({
         todo: {
            // flexDirection:'column',
-            border: borderStyle,
+            border: none,
             padding:'30px',
             fontSize:'1.4em',
-            width: '100%',
+            width: '400px',
             marginTop: '-1px',
-            borderBottom: '0',
+            zIndex: 10,
+           // borderBottom: '0',
             selectors: {
-                ':last-child':{
-                    borderBottom: borderStyle
-                },
+                // ':last-child':{
+                //     borderBottom: borderStyle
+                // },
                 ':focus':{
                     outline: none + ' !important', 
-                    border: borderStyle
+                    //border: none
                 }
             }
         },

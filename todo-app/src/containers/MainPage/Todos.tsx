@@ -26,13 +26,13 @@ class TodosRaw extends React.PureComponent<any> {
     todos = () => {
 
         return (
-        <div>
+        <ul className="list-group">
             {Object.keys(this.props.todos || {} ).map( item => 
                     <Todo 
                         key={item}
                        {...this.props.todos[item]} /> 
                  ) }
-         </div> 
+        </ul>
         )
     }
 

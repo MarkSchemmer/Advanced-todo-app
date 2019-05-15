@@ -17,8 +17,12 @@ class App extends React.PureComponent {
     const { main } = mainStyles();
     return (
       <div className={main}>
+        <div className="card">
+          <div className="card-body">
             <TodoInput />
+            </div>
             <Todos /> 
+              </div>
       </div>
     );
   }

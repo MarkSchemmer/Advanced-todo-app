@@ -22,9 +22,8 @@ const initState = Immutable({
 export const TodosReducer = (state=initState, action) => {
     switch(action.type) {
         case Actions.UPDATE_TODO: {
-            const { id, value } = action.payload
-            const todos = state.todos.set(id, 
-                {...state.todos[id], value })
+            const { id, success } = action.payload
+            const todos = success(state, id)
             return {
                 todos
             } 
@@ -38,8 +37,6 @@ export const TodosReducer = (state=initState, action) => {
         }
         case Actions.DELETE_TODO_BY_ID: {
             const todos = state.todos.without(state.todos, action.payload)
-                debugger
-            console.log(todos)
             return {    
                 todos
             }
