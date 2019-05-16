@@ -8,10 +8,11 @@ export const todoStyles = () => {
     return mergeStyleSets({
         todo: {
            // flexDirection:'column',
+           position: 'relative',
             border: none,
             padding:'30px',
             fontSize:'1.4em',
-            width: '400px',
+            width: '402px',
             marginTop: '-1px',
             zIndex: 10,
            // borderBottom: '0',

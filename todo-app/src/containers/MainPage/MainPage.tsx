@@ -9,40 +9,38 @@ const mainStyles = () => {
     main: {
       margin:'auto',
       marginTop:'10%'
-    },
-    footer: {
-      selectors: {
-        '::before':{
-
-        },
-        '::after':{
-
-        }
-      }
     }
   })
 }
 
+export const TodoMVC = (props) => {
+  const { main } = mainStyles();
+  return (
+    <div className={main}>
+    <div className="card">
+      <div className="card-body">
+          <TodoInput />
+        </div>
+      <Todos /> 
+    </div>
+      <div className="card-footer" style={{
+        position:'relative',
+        width:'445px',
+        height:'35px'
+      }}>
+          <TodoFooter /> 
+      </div>
+  </div>
+  )
+}
+
 class App extends React.PureComponent {
   render() {
-    const { main } = mainStyles();
-    return (
-      <div className={main}>
-        <div className="card">
-          <div className="card-body">
-              <TodoInput />
-            </div>
-          <Todos /> 
-        </div>
-          <div className="card-footer" style={{
-            position:'relative',
-            width:'445px',
-            height:'35px'
-          }}>
-              <TodoFooter /> 
-          </div>
-      </div>
-    );
+      return (
+        <>
+          <TodoMVC /> 
+        </>
+      )
   }
 }
 

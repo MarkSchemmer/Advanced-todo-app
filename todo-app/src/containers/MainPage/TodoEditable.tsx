@@ -2,11 +2,9 @@ import React from 'react'
 import { todoStyles } from './Styles/MainPageStyles';
 import { connect } from 'react-redux';
 import { updateTodo } from '../../redux/actions-creators/action-creators';
-import { XdeleteStyle } from './XdeleteSymbol';
 import { mergeStyleSets } from '@uifabric/merge-styles';
 
 const getStylesRedX = () => {
-    
     return mergeStyleSets({
         RedX: {
             selectors: {
@@ -17,7 +15,6 @@ const getStylesRedX = () => {
         }
     })
 }
-
 
 class TodoEditableRaw extends React.Component<any> {
     
@@ -44,11 +41,6 @@ class TodoEditableRaw extends React.Component<any> {
     render() {
         return (
             <>
-               {/* <i className={` fas fa-times  ${this.getStylesRedX.RedX} `} style={{
-                   color: 'red',
-                   position: 'relative',
-                   left:'85%'
-               }}></i> */}
                 <input 
                     autoFocus
                     className={ this.todoStyles.todo }
