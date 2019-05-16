@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Todo } from './Todo';
 import deepEqual from 'deep-equal'
 import { mergeStyleSets } from '@uifabric/merge-styles';
+import { filterTodos } from '../../redux/reducers/TodosReducer'
 
 const listOfTodos = () => {
     return mergeStyleSets({
@@ -17,20 +18,20 @@ const listOfTodos = () => {
 }
 
 class TodosRaw extends React.PureComponent<any> {
-    private listOfTodos: any
+  //  private listOfTodos: any
     constructor(props) {
         super(props)
-        this.listOfTodos = listOfTodos()
+    //    this.listOfTodos = listOfTodos()
     }
 
     todos = () => {
-
+        console.log(this.props.todos)
         return (
         <ul className="list-group">
-            {Object.keys(this.props.todos || {} ).map( item => 
+            { this.props.todos.map( ([key, value]:any) => 
                     <Todo 
-                        key={item}
-                       {...this.props.todos[item]} /> 
+                        key={key}
+                       {...value} /> 
                  ) }
         </ul>
         )
@@ -47,8 +48,9 @@ class TodosRaw extends React.PureComponent<any> {
 }
 
 const mapStateToProps = (state: any) => {
+  //  debugger
     return {
-        todos: state.TodosReducer.todos
+        todos: filterTodos(state.TodosReducer) || []
     }
 }
 

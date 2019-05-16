@@ -32,6 +32,9 @@ const updateTodo = ({dispatch, getState}) => next => action => {
                 success: updateCompleted(completed)
             }
         })
+        dispatch({
+            type: completed ? Actions.DECREMENT_LEN : Actions.INCREMENT_LEN 
+        })
     } else {
         next(action) 
     }

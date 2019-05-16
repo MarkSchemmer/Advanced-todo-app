@@ -28,3 +28,8 @@ export const deleteTodoById = id => ({
         type: Actions.DELETE_TODO_BY_ID,
         payload : id 
 })
+
+export const updateFilterType = data => ({
+        type: Actions.UPDATE_FILTER_TYPE,
+        payload: data 
+})

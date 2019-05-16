@@ -7,7 +7,6 @@ const inputStyles = () => {
     const none = 'none'
     return mergeStyleSets({
        input : {
-        //padding:'10px',
         width:'400px',
         fontSize:'1.4em',
         border: none,
@@ -44,12 +43,12 @@ class TodoInputRaw extends React.PureComponent<any> {
 
     render() {
         return (
-                    <input 
-                        value={ this.props.todoInputValue }
-                        onChange={ this.newInputWrapper }
-                        onKeyDown={ this.handleEnter }
-                        className={ this.inputStyles.input }
-                        placeholder='Please Enter Todo:' />
+            <input 
+                value={ this.props.todoInputValue }
+                onChange={ this.newInputWrapper }
+                onKeyDown={ this.handleEnter }
+                className={ this.inputStyles.input }
+                placeholder='Please Enter Todo:' />
         )
     }
 }
