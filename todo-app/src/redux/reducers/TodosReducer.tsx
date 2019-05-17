@@ -29,7 +29,8 @@ export enum FilterType {
 const initState = Immutable({
     todos: {},
     len: 0,
-    filterType: FilterType.All
+    filterType: FilterType.All,
+    toggledAll: false 
 })
 
 
@@ -60,9 +61,8 @@ export const TodosReducer = (state=initState, action) => {
             const { id, success } = action.payload
             const todos = success(state, id)
             return {
-                todos,
-                len: state.len,
-                filterType:state.filterType,
+                ...state,
+                todos
             } 
         }
         case Actions.CREATE_TODO: {
@@ -71,37 +71,49 @@ export const TodosReducer = (state=initState, action) => {
            // const newLen = state.len.set(state.len+1)
           //  debugger;
             return {
+                ...state,
                 todos,
-                filterType:state.filterType,
-                len: state.len+1  
+                len: state.len+1
             }
         }
         case Actions.DELETE_TODO_BY_ID: {
             const todos = state.todos.without(state.todos, action.payload)
-            return {    
+            return {
+                ...state,    
                 todos,
-                len: state.len-1,
-                filterType:state.filterType
+                len: state.len-1
             }
         }
         case Actions.DECREMENT_LEN: {
             return {
-                todos: state.todos,
-                len: state.len-1,
-                filterType:state.filterType
+                ...state,
+                len: state.len-1
             }
         }
         case Actions.INCREMENT_LEN: {
             return {
-                todos: state.todos,
-                len: state.len+1,
-                filterType:state.filterType
+                ...state,
+                len: state.len+1
             }
         }
         case Actions.UPDATE_FILTER_TYPE: {
             return {
                 ...state,
                 filterType: action.payload 
+            }
+        }
+        case Actions.TOGGLE_ALL_TODOS: {
+            const newCompleted = !state.toggledAll
+            return {
+                ...state,
+                toggledAll: newCompleted,
+                todos: Object.entries(state.todos).map( ([key, value]:any)  => {
+                    const newValue = value.set('completed', newCompleted)
+                    return [ key, newValue ] 
+                }).reduce((acc,[key, value]) => {
+                    const newValue = acc.set(key, value)
+                    return newValue 
+                }, state.todos )
             }
         }
         default: {

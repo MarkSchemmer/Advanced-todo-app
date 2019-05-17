@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { newInput, createTodo, clearInputTodo } from '../../redux/actions-creators/action-creators'
+import { newInput, createTodo, clearInputTodo, toggleAllTodosClick } from '../../redux/actions-creators/action-creators'
 import { mergeStyleSets } from '@uifabric/merge-styles';
 
 const inputStyles = () => {
     const none = 'none'
     return mergeStyleSets({
        input : {
-        width:'400px',
+        position: 'relative',
+        left: '20px',
+        width:'387px',
         fontSize:'1.4em',
         border: none,
         selectors : {
@@ -16,8 +18,29 @@ const inputStyles = () => {
                 outline: none  
             }
         }
+       },
+       downArrow: {
+           selectors: {
+               ':hover':{
+                   cursor: 'pointer'
+               }
+           }
        }
     })
+}
+
+const DownArrow = (props) => {
+
+    const { downArrow } = inputStyles()
+
+    return (
+        <i 
+        className={`fas fa-chevron-down  ${ downArrow }`}
+        onClick={props.handleToggleAll}
+        style={{
+            opacity: props.toggledAll ? 1 : 0.1
+        }}></i>
+    )
 }
 
 class TodoInputRaw extends React.PureComponent<any> {
@@ -35,6 +58,10 @@ class TodoInputRaw extends React.PureComponent<any> {
         }    
     }
 
+    handleToggleAll = e => {
+        this.props.toggleAllTodosClick()
+    }
+
     newInputWrapper = e => {
         e = e.target.value 
         if(e.length < 30)
@@ -43,19 +70,25 @@ class TodoInputRaw extends React.PureComponent<any> {
 
     render() {
         return (
+        <div>
+            <DownArrow 
+                handleToggleAll={this.handleToggleAll}
+                toggledAll={this.props.toggledAll} /> 
             <input 
                 value={ this.props.todoInputValue }
                 onChange={ this.newInputWrapper }
                 onKeyDown={ this.handleEnter }
                 className={ this.inputStyles.input }
                 placeholder='Please Enter Todo:' />
+        </div>
         )
     }
 }
 
 const mapStateToProps = (state:any) => {
     return {
-        todoInputValue: state.todoInputValueReducer.todoInputValue
+        todoInputValue: state.todoInputValueReducer.todoInputValue,
+        toggledAll: state.TodosReducer.toggledAll
     }
 }
 
@@ -63,7 +96,8 @@ const mapStateToProps = (state:any) => {
 const mapDispatchToProps = {
     newInput,
     createTodo,
-    clearInputTodo
+    clearInputTodo,
+    toggleAllTodosClick
 }
 
 export const TodoInput = connect(

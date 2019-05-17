@@ -50,7 +50,7 @@ class TodosRaw extends React.PureComponent<any> {
 }
 
 const mapStateToProps = (state: any) => {
-  //  debugger
+   console.log(state)
     return {
         todos: filterTodos(state.TodosReducer) || []
     }

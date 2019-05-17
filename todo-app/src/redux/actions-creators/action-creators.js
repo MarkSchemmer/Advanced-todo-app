@@ -33,3 +33,7 @@ export const updateFilterType = data => ({
         type: Actions.UPDATE_FILTER_TYPE,
         payload: data 
 })
+
+export const toggleAllTodosClick = () => ({
+        type: Actions.TOGGLE_ALL_TODOS
+})

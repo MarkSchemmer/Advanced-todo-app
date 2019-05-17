@@ -126,7 +126,6 @@ class TodoFooterRaw extends React.Component<any> {
     }
 
     render() {
-      //  alert(this.props.len)
       const none = this.none
       const border = this.borderStyle
         return (
