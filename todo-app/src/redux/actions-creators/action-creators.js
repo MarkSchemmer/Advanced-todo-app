@@ -37,3 +37,7 @@ export const updateFilterType = data => ({
 export const toggleAllTodosClick = () => ({
         type: Actions.TOGGLE_ALL_TODOS
 })
+
+export const clearCompleted = () => ({
+        type: Actions.CLEAR_COMPLETED
+})

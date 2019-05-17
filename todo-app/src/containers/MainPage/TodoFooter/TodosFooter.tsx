@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { mergeStyleSets } from '@uifabric/merge-styles';
-import { updateFilterType } from '../../../redux/actions-creators/action-creators';
+import { updateFilterType, clearCompleted } from '../../../redux/actions-creators/action-creators';
 
 
 /*
@@ -93,7 +93,7 @@ const getStylesForFooter = () => {
         items :{
             position: absolute,
             top: '20%',
-            fontSize: '0.9em'
+            fontSize: '0.8em'
         },
         listDiv: {
             position: absolute,
@@ -103,6 +103,9 @@ const getStylesForFooter = () => {
         },
         ul: {
             listStyle: none,
+            fontSize: '0.8em',
+            position:'relative',
+            right: '147px',
             selectors: {
                 '& li': {
                     display: 'inline-block',
@@ -112,6 +115,16 @@ const getStylesForFooter = () => {
                     cursor:'pointer'
                 }
             } 
+        },
+        clearCompleted : {
+            position: 'absolute',
+            left: '70px',
+            top:'-2px',
+            selectors: {
+                ':hover':{
+                    cursor: 'pointer'
+                }
+            }
         }
     })
 }
@@ -150,7 +163,15 @@ class TodoFooterRaw extends React.Component<any> {
                                             border: this.props.filterType === 'Completed' ? border : none 
                                         }}
                                         onClick={() => this.props.updateFilterType('Completed')}>Completed</li>
+
+                         
+
                                     </ul>
+                                    { this.props.completedIds.length>0 ? <div 
+                                        onClick={() => this.props.clearCompleted() }
+                                        className={ this.getStyles.clearCompleted }>
+                                            clear completed
+                                       </div> : null  }
                                 </div>
                         </div>
                 </div> 
@@ -164,15 +185,16 @@ class TodoFooterRaw extends React.Component<any> {
 }
 
 const mapStateToProps = (state: any, ownProps: any) => {
-    // debugger;
     return {
-        len: state.TodosReducer.len,
-        filterType: state.TodosReducer.filterType 
+        len: Object.entries(state.TodosReducer.todos).filter( ([key, value]: any) => !value.completed ).length,
+        filterType: state.TodosReducer.filterType,
+        completedIds: state.TodosReducer.completedIds
     }
 }
 
 const mapDispatchToProps = {
-    updateFilterType
+    updateFilterType,
+    clearCompleted
 }
 
 export const TodoFooter = connect(

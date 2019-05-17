@@ -20,7 +20,8 @@ const updateTodo = ({dispatch, getState}) => next => action => {
             type: Actions.UPDATE_TODO,
             payload: {
                 id, 
-                success: updateValue(value)
+                success: updateValue(value),
+                updatingCompleted: false 
             }
         })
     } else if(action.type === 'UPDATE_TODO' && has(action.payload, 'completed')) {
@@ -29,7 +30,8 @@ const updateTodo = ({dispatch, getState}) => next => action => {
             type: Actions.UPDATE_TODO,
             payload: {
                 id, 
-                success: updateCompleted(completed)
+                success: updateCompleted(completed),
+                updatingCompleted: true 
             }
         })
         dispatch({

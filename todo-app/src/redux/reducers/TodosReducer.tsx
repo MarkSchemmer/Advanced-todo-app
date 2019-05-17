@@ -30,7 +30,8 @@ const initState = Immutable({
     todos: {},
     len: 0,
     filterType: FilterType.All,
-    toggledAll: false 
+    toggledAll: false,
+    completedIds: []
 })
 
 
@@ -58,11 +59,13 @@ export const filterTodos = createSelector(
 export const TodosReducer = (state=initState, action) => {
     switch(action.type) {
         case Actions.UPDATE_TODO: {
-            const { id, success } = action.payload
+            const { id, success, updatingCompleted } = action.payload
             const todos = success(state, id)
+
             return {
                 ...state,
-                todos
+                todos,
+                completedIds: updatingCompleted&&!state.todos[id].completed ? [...state.completedIds, id] : state.completedIds.filter(item => item !== id) 
             } 
         }
         case Actions.CREATE_TODO: {
@@ -113,7 +116,18 @@ export const TodosReducer = (state=initState, action) => {
                 }).reduce((acc,[key, value]) => {
                     const newValue = acc.set(key, value)
                     return newValue 
-                }, state.todos )
+                }, state.todos ),
+                completedIds: newCompleted ? Object.keys(state.todos) : []
+            }
+        }
+        case Actions.CLEAR_COMPLETED: {
+            const withoutCompleted = state.todos.without((acc, cur) => {
+                return acc.completed 
+            })
+            return {
+                ...state,
+                todos: withoutCompleted,
+                completedIds: []
             }
         }
         default: {
